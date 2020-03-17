@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Adriana Cottle 001
+
+/* Write a program that prompts the user to enter in a number of teams to work with. Then create an array of the team names which will be gathered from prompts and another array of the team wins which will be random numbers between 0 and 25. Repeat this process for all of the teams. Then search through the array using a FOR Loop to find which team had the most wins. Then print out the team name and the number of their wins. If there is data to display then display all of the teams and their records in a single alert box displaying the team name and the record on one line and then separating each of the team info using the new line character "\n". */
+
+var aTeamList = [];
+var aScoreList = [];
+var sTeamName = "";
+var sOutput = "";
+var iNumTeams = 0;
+var iCount = 0;
+var iScore = 0;
+var iLosses = 0;
+var iWins = 0;
+var iRunningMax = -1;
+var iMaxLocation = 0;
+
+
+//get number of teams
+iNumTeams = parseInt(prompt("How many teams?"));
+//error checking if an invalid number was entered
+if (iNumTeams <= 0 || isNaN(iNumTeams) === true) {
+    alert("No teams to display");
+} 
+else {
+    //put team names in array of teams
+    for (iCount = 0; iCount < iNumTeams; iCount++) {
+        sTeamName = prompt("What is team " + (iCount + 1) + "'s name?");
+        //error checking for if no team name was entered
+        while (sTeamName === "") {
+            sTeamName = prompt("What is team " + (iCount + 1) + "'s name?");
+        }
+        aTeamList.push(sTeamName);
+    }
+    //for debugging 
+    console.log(aTeamList);
+
+    //assign scores to each team
+    for (iCount = 0; iCount < iNumTeams; iCount++) {
+        iWins = Math.floor(Math.random() * 26);
+        //keep track of the highest score
+        if (iWins > iRunningMax) {
+            iRunningMax = iWins;
+            iMaxLocation = iCount;
+        }
+        //calc losses
+        iLosses = (25 - iWins);
+        iScore = (iWins + "-" + iLosses);
+        aScoreList.push(iScore);
+    }
+    //testing/debugging
+    console.log(aScoreList);
+    console.log(iRunningMax);
+    console.log(iMaxLocation);
+
+    //Generate output
+    alert(aTeamList[iMaxLocation] + " had the most wins with a record of " + aScoreList[iMaxLocation]);
+    for (iCount = 0; iCount < aTeamList.length; iCount++) {
+        sOutput = sOutput + (aTeamList[iCount] + " " + aScoreList[iCount] + "\n");
+    }
+    alert(sOutput);
+}
+    </script>
+</body>
+</html>
