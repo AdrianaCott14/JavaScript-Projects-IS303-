@@ -1,0 +1,41 @@
+<!-- Adriana Cottle, 001 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test 2 Extra Credit</title>
+</head>
+<body>
+    Enter your password<label for="userPass"></label>
+    <input type="password" name="userPass" id="userPass">
+    <input type="button" value="Show" id="showButton">
+
+    <script>
+        //function to hide the password
+        function hide() {
+            document.getElementById("userPass").setAttribute("type", "password")
+        }
+        //function to show the hidden password
+        function show() {
+            document.getElementById("userPass").setAttribute("type", "text");
+        }
+        //add listener and check whether the password is already shown or not
+        var passShown = false;
+        document.getElementById("showButton").addEventListener("click", function () {
+            if (passShown == true) {
+                passShown = false;
+                hide();
+                //change the text of the button
+                document.getElementById("showButton").setAttribute("Value", "Show");
+            }
+            else {
+                passShown = true;
+                show();
+                //change the text of the button
+                document.getElementById("showButton").setAttribute("Value", "Hide");
+            };
+        })
+    </script>
+</body>
+</html>
